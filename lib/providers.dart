@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_api_call/apis/user_client.dart';
+import 'package:riverpod_api_call/application/notifier/user_notifier.dart';
+import 'package:riverpod_api_call/application/state/user_state.dart';
 import 'package:riverpod_api_call/model_with_freezed/user.dart';
 
 /// Step1 : First we provide a user_client class
@@ -14,3 +16,6 @@ final userDataFutureProvider = FutureProvider<User?>((ref) {
   final userResponse = userRepoProvider.fetchUserInfo("1");
   return userResponse;
 });
+
+final userStateNotifierProvider = StateNotifierProvider<UserNotifier,UserState>(
+  (ref) =>UserNotifier(ref.watch(userClientProvider)));

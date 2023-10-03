@@ -16,7 +16,7 @@ class UserClient {
   Future<User?> fetchUserInfo(String userId) async {
     Response response = await _dio.get('/users/$userId');
     if (response.statusCode == 200) {
-      User user = User.fromJson(response.data);
+      User? user = User.fromJson(response.data);
       return user;
     }
 
